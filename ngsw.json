@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1787038543255,
-  "index": "https://bus.fscivan.com/index.html",
+  "timestamp": 1787040998054,
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,11 +11,11 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://bus.fscivan.com/favicon.ico",
-        "https://bus.fscivan.com/index.html",
-        "https://bus.fscivan.com/main-LU4MHOL3.js",
-        "https://bus.fscivan.com/manifest.webmanifest",
-        "https://bus.fscivan.com/styles-OPUTW5UJ.css"
+        "/favicon.ico",
+        "/index.html",
+        "/main-OU7UT7TV.js",
+        "/manifest.webmanifest",
+        "/styles-OPUTW5UJ.css"
       ],
       "patterns": []
     },
@@ -27,33 +27,33 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://bus.fscivan.com/icons/icon-128x128.png",
-        "https://bus.fscivan.com/icons/icon-144x144.png",
-        "https://bus.fscivan.com/icons/icon-152x152.png",
-        "https://bus.fscivan.com/icons/icon-192x192.png",
-        "https://bus.fscivan.com/icons/icon-384x384.png",
-        "https://bus.fscivan.com/icons/icon-512x512.png",
-        "https://bus.fscivan.com/icons/icon-72x72.png",
-        "https://bus.fscivan.com/icons/icon-96x96.png"
+        "/icons/icon-128x128.png",
+        "/icons/icon-144x144.png",
+        "/icons/icon-152x152.png",
+        "/icons/icon-192x192.png",
+        "/icons/icon-384x384.png",
+        "/icons/icon-512x512.png",
+        "/icons/icon-72x72.png",
+        "/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://bus.fscivan.com/favicon.ico": "55cb3bfc3459e70a141fc7d2df903ea477228296",
-    "https://bus.fscivan.com/icons/icon-128x128.png": "9bda99f81ceabfb4fd3697e4627a07f2911870ef",
-    "https://bus.fscivan.com/icons/icon-144x144.png": "abb23f881e5bbc204c3744455cb7c230dde3cb95",
-    "https://bus.fscivan.com/icons/icon-152x152.png": "06cfe33a6836b1e389d431303f48ed8a05c571f7",
-    "https://bus.fscivan.com/icons/icon-192x192.png": "16de0bf2e1ce2f52a6e0b1ae365a66cae18505cd",
-    "https://bus.fscivan.com/icons/icon-384x384.png": "d7e536ad3c153b6c545badf923d22e0b4b952b94",
-    "https://bus.fscivan.com/icons/icon-512x512.png": "3d60864ebb88e09c1ea372ffd94a79e8ac465ffe",
-    "https://bus.fscivan.com/icons/icon-72x72.png": "013f32a0e4a027418d49c96222675e1bf07eb331",
-    "https://bus.fscivan.com/icons/icon-96x96.png": "570561b1c579ce1b23393927afb76f4aeeac905f",
-    "https://bus.fscivan.com/index.html": "8a149997b47fdaa7e54ee76e95fca71bbb912b4a",
-    "https://bus.fscivan.com/main-LU4MHOL3.js": "b7424107b0e6eccce33b6333d0291e74970207b8",
-    "https://bus.fscivan.com/manifest.webmanifest": "1c1a26692653256bb58276f295c2899f8266e199",
-    "https://bus.fscivan.com/styles-OPUTW5UJ.css": "0918ee8e18cf383756264e2ddad6eea59484ea1f"
+    "/favicon.ico": "55cb3bfc3459e70a141fc7d2df903ea477228296",
+    "/icons/icon-128x128.png": "9bda99f81ceabfb4fd3697e4627a07f2911870ef",
+    "/icons/icon-144x144.png": "abb23f881e5bbc204c3744455cb7c230dde3cb95",
+    "/icons/icon-152x152.png": "06cfe33a6836b1e389d431303f48ed8a05c571f7",
+    "/icons/icon-192x192.png": "16de0bf2e1ce2f52a6e0b1ae365a66cae18505cd",
+    "/icons/icon-384x384.png": "d7e536ad3c153b6c545badf923d22e0b4b952b94",
+    "/icons/icon-512x512.png": "3d60864ebb88e09c1ea372ffd94a79e8ac465ffe",
+    "/icons/icon-72x72.png": "013f32a0e4a027418d49c96222675e1bf07eb331",
+    "/icons/icon-96x96.png": "570561b1c579ce1b23393927afb76f4aeeac905f",
+    "/index.html": "cc30b6b7158ed8c1a28edb72eafe804bd8aa5224",
+    "/main-OU7UT7TV.js": "e91efa4b5e31524a2633f75b07b7ce4dc93bbf3e",
+    "/manifest.webmanifest": "1c1a26692653256bb58276f295c2899f8266e199",
+    "/styles-OPUTW5UJ.css": "0918ee8e18cf383756264e2ddad6eea59484ea1f"
   },
   "navigationUrls": [
     {
