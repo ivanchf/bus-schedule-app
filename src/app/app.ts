@@ -32,10 +32,10 @@ import { KmbEtaResponse, KmbEtaItem } from './kmb-eta.model';
       <mat-card-header>
         <mat-card-title class="header-title">
           <mat-icon color="warn">directions_bus</mat-icon>
-          KMB Bus Arrival Estimates
+          Anna's Bus ETA Dashboard
         </mat-card-title>
         <mat-card-subtitle class="header-subtitle">
-          <span>Stop ID: D3E18D04B69DF388</span>
+          <span>巴士站: 天平邨天明樓</span>
           <span class="refresh-indicator" *ngIf="lastUpdated()">
             • Last updated: {{ lastUpdated() | date: 'HH:mm:ss' }} (Auto-refreshes every 1m)
           </span>
@@ -63,7 +63,7 @@ import { KmbEtaResponse, KmbEtaItem } from './kmb-eta.model';
             <ng-container matColumnDef="route">
               <th mat-header-cell *matHeaderCellDef>Route</th>
               <td mat-cell *matCellDef="let item">
-                <span class="route-badge">{{ item.route }}</span>
+                <span class="route-badge" [class.route-70k]="item.route === '70K'" [class.route-79k]="item.route === '79K'">{{ item.route }}</span>
               </td>
             </ng-container>
 
@@ -149,6 +149,21 @@ import { KmbEtaResponse, KmbEtaItem } from './kmb-eta.model';
         font-weight: 700;
         color: #e60012;
         font-size: 1.1rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      /* Highlight styles for specific routes */
+      .route-70k {
+        background: #fff3e0; /* light amber */
+        color: #bf360c; /* dark orange */
+        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
+      }
+
+      .route-79k {
+        background: #e3f2fd; /* light blue */
+        color: #0d47a1; /* dark blue */
+        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.04);
       }
       .sub-text {
         color: #666;
@@ -211,7 +226,16 @@ export class App implements OnInit {
         takeUntilDestroyed(this.destroyRef), // Automatically cancels timer when component is unmounted
       )
       .subscribe((response) => {
-        this.etaList.set(response.data);
+        const filtered = (response.data || [])
+          .filter(
+            (item) => (item.route === '70K' && item.service_type === 2) || item.route === '79K',
+          )
+          .sort((a, b) => {
+            const aTime = a.eta ? new Date(a.eta).getTime() : Infinity;
+            const bTime = b.eta ? new Date(b.eta).getTime() : Infinity;
+            return aTime - bTime;
+          });
+        this.etaList.set(filtered);
         this.lastUpdated.set(new Date());
         this.loading.set(false);
       });
