@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1787032386765,
-  "index": "https://ivanchf.github.io/bus-schedule-app/index.html",
+  "timestamp": 1787032692749,
+  "index": "https://www.fscivan.com/bus-schedule-app/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,11 +11,11 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://ivanchf.github.io/bus-schedule-app/favicon.ico",
-        "https://ivanchf.github.io/bus-schedule-app/index.html",
-        "https://ivanchf.github.io/bus-schedule-app/main-LU4MHOL3.js",
-        "https://ivanchf.github.io/bus-schedule-app/manifest.webmanifest",
-        "https://ivanchf.github.io/bus-schedule-app/styles-OPUTW5UJ.css"
+        "https://www.fscivan.com/bus-schedule-app/favicon.ico",
+        "https://www.fscivan.com/bus-schedule-app/index.html",
+        "https://www.fscivan.com/bus-schedule-app/main-LU4MHOL3.js",
+        "https://www.fscivan.com/bus-schedule-app/manifest.webmanifest",
+        "https://www.fscivan.com/bus-schedule-app/styles-OPUTW5UJ.css"
       ],
       "patterns": []
     },
@@ -27,33 +27,33 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-128x128.png",
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-144x144.png",
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-152x152.png",
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-192x192.png",
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-384x384.png",
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-512x512.png",
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-72x72.png",
-        "https://ivanchf.github.io/bus-schedule-app/icons/icon-96x96.png"
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-128x128.png",
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-144x144.png",
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-152x152.png",
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-192x192.png",
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-384x384.png",
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-512x512.png",
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-72x72.png",
+        "https://www.fscivan.com/bus-schedule-app/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://ivanchf.github.io/bus-schedule-app/favicon.ico": "55cb3bfc3459e70a141fc7d2df903ea477228296",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-128x128.png": "9bda99f81ceabfb4fd3697e4627a07f2911870ef",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-144x144.png": "abb23f881e5bbc204c3744455cb7c230dde3cb95",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-152x152.png": "06cfe33a6836b1e389d431303f48ed8a05c571f7",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-192x192.png": "16de0bf2e1ce2f52a6e0b1ae365a66cae18505cd",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-384x384.png": "d7e536ad3c153b6c545badf923d22e0b4b952b94",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-512x512.png": "3d60864ebb88e09c1ea372ffd94a79e8ac465ffe",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-72x72.png": "013f32a0e4a027418d49c96222675e1bf07eb331",
-    "https://ivanchf.github.io/bus-schedule-app/icons/icon-96x96.png": "570561b1c579ce1b23393927afb76f4aeeac905f",
-    "https://ivanchf.github.io/bus-schedule-app/index.html": "3da193caf5a8ed21e26a8d50db08c98cee718e2d",
-    "https://ivanchf.github.io/bus-schedule-app/main-LU4MHOL3.js": "b7424107b0e6eccce33b6333d0291e74970207b8",
-    "https://ivanchf.github.io/bus-schedule-app/manifest.webmanifest": "1c1a26692653256bb58276f295c2899f8266e199",
-    "https://ivanchf.github.io/bus-schedule-app/styles-OPUTW5UJ.css": "0918ee8e18cf383756264e2ddad6eea59484ea1f"
+    "https://www.fscivan.com/bus-schedule-app/favicon.ico": "55cb3bfc3459e70a141fc7d2df903ea477228296",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-128x128.png": "9bda99f81ceabfb4fd3697e4627a07f2911870ef",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-144x144.png": "abb23f881e5bbc204c3744455cb7c230dde3cb95",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-152x152.png": "06cfe33a6836b1e389d431303f48ed8a05c571f7",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-192x192.png": "16de0bf2e1ce2f52a6e0b1ae365a66cae18505cd",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-384x384.png": "d7e536ad3c153b6c545badf923d22e0b4b952b94",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-512x512.png": "3d60864ebb88e09c1ea372ffd94a79e8ac465ffe",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-72x72.png": "013f32a0e4a027418d49c96222675e1bf07eb331",
+    "https://www.fscivan.com/bus-schedule-app/icons/icon-96x96.png": "570561b1c579ce1b23393927afb76f4aeeac905f",
+    "https://www.fscivan.com/bus-schedule-app/index.html": "1785d51ed06015428c2950a1ca11ad50a4cb5363",
+    "https://www.fscivan.com/bus-schedule-app/main-LU4MHOL3.js": "b7424107b0e6eccce33b6333d0291e74970207b8",
+    "https://www.fscivan.com/bus-schedule-app/manifest.webmanifest": "1c1a26692653256bb58276f295c2899f8266e199",
+    "https://www.fscivan.com/bus-schedule-app/styles-OPUTW5UJ.css": "0918ee8e18cf383756264e2ddad6eea59484ea1f"
   },
   "navigationUrls": [
     {
