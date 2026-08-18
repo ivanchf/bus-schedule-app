@@ -88,6 +88,36 @@ export class App implements OnInit {
       });
   }
 
+  // Manual refresh: force a single fetch from the API
+  forceRefresh(): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.http.get<KmbEtaResponse>(this.apiUrl).pipe(
+      catchError((err) => {
+        this.error.set('Failed to load bus ETA data.');
+        this.loading.set(false);
+        console.error('Error fetching ETA:', err);
+        return EMPTY;
+      }),
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((response) => {
+      const filtered = (response.data || [])
+        .filter(
+          (item) => (item.route === '70K' && item.service_type === 2) || item.route === '79K',
+        )
+        .sort((a, b) => {
+          const aTime = a.eta ? new Date(a.eta).getTime() : Infinity;
+          const bTime = b.eta ? new Date(b.eta).getTime() : Infinity;
+          return aTime - bTime;
+        });
+      this.etaList.set(filtered);
+      this.lastUpdated.set(new Date());
+      this.loading.set(false);
+    });
+
+  }
+
   getTimeLeft(etaStr: string): string {
     if (!etaStr) return 'No schedule';
 
@@ -105,9 +135,4 @@ export class App implements OnInit {
     return `${minutes}分${secStr}秒`;
   }
 
-  isArriving(etaStr: string): boolean {
-    if (!etaStr) return false;
-    const diffMins = (new Date(etaStr).getTime() - new Date().getTime()) / 60000;
-    return diffMins <= 3;
-  }
 }

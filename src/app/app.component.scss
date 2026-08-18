@@ -1,5 +1,6 @@
 .eta-card { max-width: 1200px; margin: 24px auto; padding: 12px; }
 .header-title { display: flex; align-items: center; gap: 8px; font-size: 1.35rem; font-weight: 700; }
+.header-title button { margin-left: auto; }
 .header-subtitle { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.95rem; }
 .refresh-indicator { color: #666; font-style: italic; }
 .live-clock { color: #666; font-style: italic; margin-left: 6px; }
@@ -15,6 +16,37 @@
 
 .eta-item { position: relative; padding: 10px; border-radius: 10px; background: #fff; height: 100%; display: flex; flex-direction: column; }
 .order-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.08); color: #222; font-weight: 800; width: 34px; height: 34px; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-size: 1rem; }
+.refresh-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Ensure Material mat-icon-button padding doesn't change the fixed size */
+.refresh-btn.mat-icon-button {
+  padding: 0;
+  min-width: 34px;
+  min-height: 34px;
+}
+
+.refresh-btn mat-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.refresh-btn:hover {
+  background: rgba(0,0,0,0.12);
+}
+
+.refresh-btn:active {
+  transform: scale(0.98);
+}
+
+.refresh-btn[disabled],
+.refresh-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
 /* Slightly larger badge on wider screens */
 @media (min-width: 900px) { .order-badge { width: 40px; height: 40px; font-size: 1.05rem; } }
 .eta-item mat-card-content { flex: 1 1 auto; }

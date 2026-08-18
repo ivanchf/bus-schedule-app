@@ -1,9 +1,12 @@
 <mat-card class="eta-card">
   <mat-card-header>
-    <mat-card-title class="header-title">
-      <mat-icon color="warn">directions_bus</mat-icon>
-      Anna's Bus
-    </mat-card-title>
+
+      <mat-card-title class="header-title">
+        <mat-icon color="warn">directions_bus</mat-icon>
+        Anna巴士到站時間
+
+      </mat-card-title>
+
     <mat-card-subtitle class="header-subtitle">
       <span>巴士站: 天平邨天明樓</span>
       <span class="live-clock" *ngIf="currentTime()">
@@ -13,7 +16,14 @@
         • 最後更新: {{ lastUpdated() | date: 'h:mm:ss a' }} (每30秒自動刷新)
       </span>
     </mat-card-subtitle>
+
+
+
   </mat-card-header>
+
+  <button class="refresh-btn" mat-icon-button aria-label="Refresh" (click)="forceRefresh()" [disabled]="loading()">
+    <mat-icon>refresh</mat-icon>
+  </button>
 
   <mat-card-content class="content-container">
     <!-- Initial Loading State -->
