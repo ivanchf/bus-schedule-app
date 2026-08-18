@@ -1,0 +1,55 @@
+<mat-card class="eta-card">
+  <mat-card-header>
+    <mat-card-title class="header-title">
+      <mat-icon color="warn">directions_bus</mat-icon>
+      Anna's Bus
+    </mat-card-title>
+    <mat-card-subtitle class="header-subtitle">
+      <span>巴士站: 天平邨天明樓</span>
+      <span class="live-clock" *ngIf="currentTime()">
+        • 現在時間: {{ currentTime() | date: 'h:mm:ss a' }}
+      </span>
+      <span class="refresh-indicator" *ngIf="lastUpdated()">
+        • 最後更新: {{ lastUpdated() | date: 'h:mm:ss a' }} (每30秒自動刷新)
+      </span>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="content-container">
+    <!-- Initial Loading State -->
+    <div *ngIf="loading()" class="center-state">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Fetching arrival times...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error()" class="center-state error-text">
+      <mat-icon color="warn">error</mat-icon>
+      <p>{{ error() }}</p>
+      <button mat-raised-button color="primary" (click)="startPolling()">Retry</button>
+    </div>
+
+    <!-- Mobile-friendly card list -->
+    <div class="list-container" *ngIf="!loading() && !error()">
+      <mat-card *ngFor="let item of etaList(); let i = index" class="eta-item mat-elevation-z2">
+        <mat-card-header>
+          <div mat-card-avatar class="route-avatar" [class.route-70k]="item.route === '70K'" [class.route-79k]="item.route === '79K'">{{ item.route }}</div>
+          <mat-card-title>{{ getTimeLeft(item.eta) }}</mat-card-title>
+          <mat-card-subtitle>{{ item.eta ? (item.eta | date: 'h:mm:ss a') : 'N/A' }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <div class="order-badge">{{ i + 1 }}</div>
+
+        <mat-card-content>
+          <div class="eta-item-row">
+            <div class="eta-info">
+              <div>{{ item.dest_tc }}{{ item.rmk_tc ?' - ' + item.rmk_tc : '' }}</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <div *ngIf="etaList().length === 0" class="empty-row">沒有所需的巴士到站時間。</div>
+    </div>
+  </mat-card-content>
+</mat-card>
