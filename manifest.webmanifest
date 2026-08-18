@@ -1,6 +1,6 @@
 {
-  "name": "bus-schedule-app",
-  "short_name": "bus-schedule-app",
+  "name": "Anna's Bus Schedule",
+  "short_name": "Anna's Bus",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
