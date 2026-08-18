@@ -27,7 +27,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/CNAME"
             ],
             "styles": ["src/styles.scss"]
           },
