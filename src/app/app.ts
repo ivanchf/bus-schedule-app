@@ -56,134 +56,102 @@ import { KmbEtaResponse, KmbEtaItem } from './kmb-eta.model';
           <button mat-raised-button color="primary" (click)="startPolling()">Retry</button>
         </div>
 
-        <!-- Material Table -->
-        <div class="table-container" *ngIf="!loading() && !error()">
-          <table mat-table [dataSource]="etaList()" class="mat-elevation-z2">
-            <!-- Route Column -->
-            <ng-container matColumnDef="route">
-              <th mat-header-cell *matHeaderCellDef>Route</th>
-              <td mat-cell *matCellDef="let item">
-                <span class="route-badge" [class.route-70k]="item.route === '70K'" [class.route-79k]="item.route === '79K'">{{ item.route }}</span>
-              </td>
-            </ng-container>
+        <!-- Mobile-friendly card list -->
+        <div class="list-container" *ngIf="!loading() && !error()">
+          <mat-card *ngFor="let item of etaList(); let i = index" class="eta-item mat-elevation-z2">
+              <mat-card-header>
+              <div mat-card-avatar class="route-avatar" [class.route-70k]="item.route === '70K'" [class.route-79k]="item.route === '79K'">{{ item.route }}</div>
+              <mat-card-title>{{ item.dest_tc }}</mat-card-title>
+              <mat-card-subtitle>{{ item.rmk_tc || '' }}</mat-card-subtitle>
+            </mat-card-header>
 
-            <!-- Destination Column -->
-            <ng-container matColumnDef="destination">
-              <th mat-header-cell *matHeaderCellDef>Destination</th>
-              <td mat-cell *matCellDef="let item">
-                <strong>{{ item.dest_en }}</strong>
-                <span class="sub-text">({{ item.dest_tc }})</span>
-              </td>
-            </ng-container>
+            <div class="order-badge">{{ i + 1 }}</div>
 
-            <!-- ETA Time Column -->
-            <ng-container matColumnDef="eta">
-              <th mat-header-cell *matHeaderCellDef>Scheduled ETA</th>
-              <td mat-cell *matCellDef="let item">
-                {{ item.eta ? (item.eta | date: 'HH:mm:ss') : 'N/A' }}
-              </td>
-            </ng-container>
+            <mat-card-content>
+              <div class="eta-item-row">
+                <div class="eta-info">
+                  <div class="eta-time">{{ item.eta ? (item.eta | date: 'h:mm a') : 'N/A' }}</div>
+                  <mat-chip [highlighted]="isArriving(item.eta)" color="accent">{{ getMinutesLeft(item.eta) }}</mat-chip>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
 
-            <!-- Minutes Away Column -->
-            <ng-container matColumnDef="minutesLeft">
-              <th mat-header-cell *matHeaderCellDef>Status / Arrival</th>
-              <td mat-cell *matCellDef="let item">
-                <mat-chip [highlighted]="isArriving(item.eta)" color="accent">
-                  {{ getMinutesLeft(item.eta) }}
-                </mat-chip>
-              </td>
-            </ng-container>
-
-            <!-- Remarks Column -->
-            <ng-container matColumnDef="remarks">
-              <th mat-header-cell *matHeaderCellDef>Remarks</th>
-              <td mat-cell *matCellDef="let item">
-                {{ item.rmk_en || '-' }}
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
-            <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell empty-row" [attr.colspan]="displayedColumns.length">
-                No upcoming buses scheduled for this stop.
-              </td>
-            </tr>
-          </table>
+          <div *ngIf="etaList().length === 0" class="empty-row">No upcoming buses scheduled for this stop.</div>
         </div>
       </mat-card-content>
     </mat-card>
   `,
   styles: [
     `
-      .eta-card {
-        max-width: 900px;
-        margin: 24px auto;
-        padding: 12px;
+      .eta-card { max-width: 1200px; margin: 24px auto; padding: 12px; }
+      .header-title { display: flex; align-items: center; gap: 8px; font-size: 1.35rem; font-weight: 700; }
+      .header-subtitle { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.95rem; }
+      .refresh-indicator { color: #666; font-style: italic; }
+      .content-container { margin-top: 16px; }
+
+      /* Responsive grid: cards auto-fit into columns on larger screens */
+      .list-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
+        align-items: start;
       }
-      .header-title {
+
+      .eta-item { position: relative; padding: 10px; border-radius: 10px; background: #fff; height: 100%; display: flex; flex-direction: column; }
+      .order-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.08); color: #222; font-weight: 800; width: 34px; height: 34px; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-size: 1rem; }
+      /* Slightly larger badge on wider screens */
+      @media (min-width: 900px) { .order-badge { width: 40px; height: 40px; font-size: 1.05rem; } }
+      .eta-item mat-card-content { flex: 1 1 auto; }
+      .eta-item-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+      .left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+      .destination { display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+      .eta-info { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; white-space: nowrap; }
+      .eta-time { font-weight: 700; font-size: 1.15rem; }
+
+      .route-badge {
+        font-weight: 800;
+        color: #e60012;
+        font-size: 1.2rem;
+        padding: 8px 10px;
+        border-radius: 8px;
+        display: inline-block;
+        min-width: 56px;
+        text-align: center;
+      }
+
+      .route-avatar {
+        font-weight: 800;
+        color: #fff;
+        background: #e60012;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
-        gap: 8px;
-      }
-      .header-subtitle {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .refresh-indicator {
-        color: #666;
-        font-style: italic;
-      }
-      .content-container {
-        margin-top: 16px;
-      }
-      .table-container {
-        overflow-x: auto;
-      }
-      table {
-        width: 100%;
-      }
-      .route-badge {
-        font-weight: 700;
-        color: #e60012;
-        font-size: 1.1rem;
-        padding: 2px 6px;
-        border-radius: 4px;
+        justify-content: center;
+        font-size: 1.05rem;
       }
 
       /* Highlight styles for specific routes */
-      .route-70k {
-        background: #fff3e0; /* light amber */
-        color: #bf360c; /* dark orange */
-        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
-      }
+      .route-70k { background: #fff3e0; color: #bf360c; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); }
+      .route-79k { background: #e3f2fd; color: #0d47a1; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.04); }
 
-      .route-79k {
-        background: #e3f2fd; /* light blue */
-        color: #0d47a1; /* dark blue */
-        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.04);
-      }
-      .sub-text {
-        color: #666;
-        font-size: 0.85rem;
-        margin-left: 4px;
-      }
-      .center-state {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 32px 0;
-        gap: 12px;
-      }
-      .error-text {
-        color: #d32f2f;
-      }
-      .empty-row {
-        text-align: center;
-        padding: 24px;
-        color: #666;
+      .mat-card-title, .destination strong { font-size: 1.05rem; font-weight: 700; }
+      .sub-text { color: #666; font-size: 0.95rem; margin-left: 4px; overflow: hidden; text-overflow: ellipsis; }
+      .center-state { display: flex; flex-direction: column; align-items: center; padding: 32px 0; gap: 12px; }
+      .error-text { color: #d32f2f; }
+      .empty-row { text-align: center; padding: 24px; color: #666; }
+
+      /* Responsive: stack content on narrow screens */
+      @media (max-width: 600px) {
+        .eta-card { margin: 12px; padding: 8px; }
+        .eta-item-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+        .eta-info { align-self: stretch; flex-direction: row; justify-content: space-between; width: 100%; }
+        .route-badge { font-size: 1.05rem; padding: 6px 8px; min-width: 48px; }
+        .route-avatar { width: 48px; height: 48px; font-size: 0.95rem; }
+        .eta-time { font-size: 1.05rem; }
+        .mat-card-title { font-size: 1.05rem; }
       }
     `,
   ],
@@ -249,7 +217,7 @@ export class App implements OnInit {
     const diffMins = Math.round((eta - now) / 60000);
 
     if (diffMins <= 0) return 'Arriving';
-    return `${diffMins} mins`;
+    return `${diffMins} 分鐘`;
   }
 
   isArriving(etaStr: string): boolean {
