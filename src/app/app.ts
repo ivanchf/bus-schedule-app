@@ -32,12 +32,15 @@ import { KmbEtaResponse, KmbEtaItem } from './kmb-eta.model';
       <mat-card-header>
         <mat-card-title class="header-title">
           <mat-icon color="warn">directions_bus</mat-icon>
-          Anna's Bus ETA Dashboard
+          Anna's Bus
         </mat-card-title>
         <mat-card-subtitle class="header-subtitle">
           <span>巴士站: 天平邨天明樓</span>
+          <span class="live-clock" *ngIf="currentTime()">
+            • 現在時間: {{ currentTime() | date: 'h:mm:ss a' }}
+          </span>
           <span class="refresh-indicator" *ngIf="lastUpdated()">
-            • Last updated: {{ lastUpdated() | date: 'HH:mm:ss' }} (Auto-refreshes every 1m)
+            • 最後更新: {{ lastUpdated() | date: 'h:mm:ss a' }} (每30秒自動刷新)
           </span>
         </mat-card-subtitle>
       </mat-card-header>
@@ -88,6 +91,7 @@ import { KmbEtaResponse, KmbEtaItem } from './kmb-eta.model';
       .header-title { display: flex; align-items: center; gap: 8px; font-size: 1.35rem; font-weight: 700; }
       .header-subtitle { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.95rem; }
       .refresh-indicator { color: #666; font-style: italic; }
+      .live-clock { color: #666; font-style: italic; margin-left: 6px; }
       .content-container { margin-top: 16px; }
 
       /* Responsive grid: cards auto-fit into columns on larger screens */
@@ -161,7 +165,7 @@ export class App implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   private apiUrl = 'https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/D3E18D04B69DF388';
-  private REFRESH_INTERVAL_MS = 60000; // 1 minute
+  private REFRESH_INTERVAL_MS = 30000; // 30 seconds
 
   displayedColumns: string[] = ['route', 'destination', 'eta', 'minutesLeft', 'remarks'];
 
@@ -169,9 +173,14 @@ export class App implements OnInit {
   loading = signal<boolean>(true);
   error = signal<string | null>(null);
   lastUpdated = signal<Date | null>(null);
+  currentTime = signal<Date>(new Date());
 
   ngOnInit(): void {
     this.startPolling();
+    // Live clock: updates every second
+    timer(0, 1000)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.currentTime.set(new Date()));
   }
 
   startPolling(): void {
